@@ -1,0 +1,40 @@
+<div class="container-fluid">
+  <div class="navbar navbar-inverse" role="navigation">
+
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      {{link-to 'App' 'index' class="navbar-brand"}}
+    </div>
+
+    <div id="navbar" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav navbar-right">
+        {{#if isRegistered}}
+        <li>{{link-to 'Settings' 'settings'}}</li>
+        <li><a href='logout' {{action 'logout'}}>Log-out</a></li>
+          {{else}}
+        <li>{{link-to 'Register' 'register'}}</li>
+        <li>{{link-to 'Log-in' 'login'}}</li>
+          {{/if}}
+      </ul>
+    </div>
+
+  </div>
+
+  <div class='row'>
+    <p>You are logged in as: <strong>{{name}}</strong></p>
+    {{#unless isRegistered}}
+    <p>Your session expires on: <strong>{{expdate}}</strong></p>
+    <p>You can {{#link-to 'register'}}register{{/link-to}} to have a permanent account.</p>
+    {{/unless}}
+  </div>
+
+  <div class="container-fluid">
+    {{outlet}}
+  </div>
+
+</div>

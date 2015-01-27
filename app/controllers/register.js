@@ -1,7 +1,6 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-  algo: console.log(this.store),
   needs: ['application'],
 
   reset: function() {
@@ -17,7 +16,6 @@ export default Ember.Controller.extend({
       var self = this;
       var ref = this.get('firebaseRef');
       var data = {email: this.get('userEmail'), password:this.get('userPassword')};
-      console.log(this.store);
       ref.createUser(data, function(error) {
         if (error === null) {
           console.log("User created successfully");
@@ -30,11 +28,12 @@ export default Ember.Controller.extend({
               console.log("Authenticated successfully after registration, user: " + authData.uid);
               //persist user to database
               var user = self.store.createRecord("user", {
+                id: authData.uid,
                 authData: authData,
-                firstName: '',
-                lastName: '',
+                name: '',
                 member: true
               });
+              console.log(user);
               user.save().then(function (){
                 console.log('User persisted');
                 //reset textboxes and redirect

@@ -2,6 +2,10 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
   needs: ['login'],
+  fireauth: function (){
+    var ref = this.get('firebaseRef');
+    return ref.getAuth();
+  }.property(),
   onAuthChange: function(authData) {
     this.set('fireauth', authData);
     var ref = this.get('firebaseRef');
@@ -48,6 +52,8 @@ export default Ember.Controller.extend({
   isRegistered: function () {
       return !(this.get('fireauth.provider') === 'anonymous');
   }.property('fireauth'),
+
+
   name: function(){
     var fireauth = this.get('fireauth');
     if(fireauth){

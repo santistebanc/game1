@@ -1,0 +1,12 @@
+<div class='row'>
+    {{#if isRegistered}}
+    <ul>
+      {{#each user in model}}
+      <li>
+        {{user.name}}
+      </li>
+      {{/each}}
+    </ul>
+    <p>Welcome <strong>{{model.name}}</strong>!</p>
+    {{/if}}
+</div>

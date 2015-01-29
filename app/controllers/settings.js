@@ -1,12 +1,6 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-  onAuthChange: function(authData) {
-    this.set('fireauth', authData);
-    if(!authData || authData.provider === 'anonymous'){
-      this.transitionTo('login');
-    }
-  },
   actions: {
     save: function() {
       console.log(this.model);

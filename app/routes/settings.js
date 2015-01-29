@@ -1,19 +1,13 @@
-import Ember from 'ember';
+import AuthRoute from './auth';
 
-export default Ember.Route.extend({
-  needs: ['application'],
+export default AuthRoute.extend({
   beforeModel: function(){
-    var authData = this.controllerFor('application').get('fireauth');
-    if(!authData || authData.provider === 'anonymous'){
-      this.transitionTo('login');
-    }
-  },
+    this._super();
+      if (this.get('auth.currentUser.provider') === 'anonymous') {
+        this.transitionTo('login');
+      }
+    },
   model: function(){
-    //var authData = this.controllerFor('application').get('fireauth');
-    //return this.store.find('user', authData.get('uid'));
-  },
-  setupController: function (controller) {
-    var ref = this.get('firebaseRef');
-    ref.onAuth(controller.onAuthChange, controller);
+    return this.store.find('user', this.get('auth.currentUser.uid'));
   }
 });

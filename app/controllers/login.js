@@ -1,8 +1,6 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-  needs: ['application'],
-
   reset: function() {
     this.setProperties({
       userEmail: "",
@@ -14,7 +12,7 @@ export default Ember.Controller.extend({
   actions: {
     login: function(){
       var data = {email: this.get('userEmail'), password:this.get('userPassword')};
-      this.get('controllers.application').login(data, 'index', this);
+      this.get('auth').login(data, 'index', this);
     }
   }
 });

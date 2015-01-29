@@ -1,0 +1,8 @@
+<div class='row'>
+    {{#if isRegistered}}
+    <p>Welcome <strong>{{model.name}}</strong>!</p>
+    {{else}}
+    <p>Welcome <strong>{{user.uid}}</strong></p>
+    <p>You can {{#link-to 'register'}}register{{/link-to}} to have a permanent account.</p>
+    {{/if}}
+</div>

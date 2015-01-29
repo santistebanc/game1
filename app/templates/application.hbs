@@ -15,7 +15,7 @@
       <ul class="nav navbar-nav navbar-right">
         {{#if isRegistered}}
         <li>{{link-to 'Settings' 'settings'}}</li>
-        <li><a href='logout' {{action 'logout'}}>Log-out</a></li>
+        <li>{{link-to 'Log-out' 'logout'}}</li>
           {{else}}
         <li>{{link-to 'Register' 'register'}}</li>
         <li>{{link-to 'Log-in' 'login'}}</li>
@@ -23,14 +23,6 @@
       </ul>
     </div>
 
-  </div>
-
-  <div class='row'>
-    <p>You are logged in as: <strong>{{name}}</strong></p>
-    {{#unless isRegistered}}
-    <p>Your session expires on: <strong>{{expdate}}</strong></p>
-    <p>You can {{#link-to 'register'}}register{{/link-to}} to have a permanent account.</p>
-    {{/unless}}
   </div>
 
   <div class="container-fluid">
